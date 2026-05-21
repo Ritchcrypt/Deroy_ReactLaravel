@@ -8,8 +8,9 @@ use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 use App\Traits\ApiResponse;
-
+use App\Models\ActivityLog;
 class UserController extends Controller
 {
     use ApiResponse;
@@ -93,6 +94,10 @@ class UserController extends Controller
         }
 
         $user = User::create($validated);
+        ActivityLog::create([
+    'user_id' => Auth::id(),
+    'activity' => 'Created user: ' . $user->name,
+]);
 
         return $this->success(
             "User created successfully",
@@ -150,6 +155,10 @@ class UserController extends Controller
         unset($validated['password_confirmation']);
 
         $user->update($validated);
+        ActivityLog::create([
+    'user_id' => Auth::id(),
+    'activity' => 'Updated user: ' . $user->name,
+]);
 
         return $this->success(
             "User updated successfully",
@@ -173,6 +182,10 @@ class UserController extends Controller
                 Storage::disk('public')->delete($user->avatar);
             }
             $user->forceDelete();
+            ActivityLog::create([
+    'user_id' => Auth::id(),
+    'activity' => 'Permanently deleted user: ' . $user->name,
+]);
             
             return $this->success(
                 "User permanently deleted successfully",
@@ -182,6 +195,10 @@ class UserController extends Controller
         } else {
             // Soft delete the user
             $user->delete();
+            ActivityLog::create([
+    'user_id' => Auth::id(),
+    'activity' => 'Deleted user: ' . $user->name,
+]);
             
             return $this->success(
                 "User deleted successfully",

@@ -12,7 +12,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ content }) => {
       <div className="min-h-screen bg-main-bg">
         <Navbar onMenuClick={() => setIsSidebarOpen(!isSidebarOpen)} />
         <Sidebar isOpen={isSidebarOpen} />
-        <div className="sm:ml-64 pt-16 flex flex-col min-h-screen">
+        <div className="sm:ml-64 pt-20 flex flex-col min-h-screen">
           {isSidebarOpen && (
             <div 
               className="fixed inset-0 z-30 bg-black/40 backdrop-blur-sm sm:hidden" 

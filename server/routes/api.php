@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\v1\AuthenticationController;
 use App\Http\Controllers\API\v1\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\v1\ActivityLogController;
 
 Route::post('auth/login', [AuthenticationController::class, 'login']);
 
@@ -16,5 +17,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::middleware('role:admin')->group(function () {
         Route::apiResource('users', UserController::class);
         Route::post('users/{id}/restore', [UserController::class, 'restore']);
+        Route::get('activity-logs', [ActivityLogController::class, 'index']);
     });
 });

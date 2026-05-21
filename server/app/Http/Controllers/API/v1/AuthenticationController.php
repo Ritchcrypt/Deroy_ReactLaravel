@@ -6,6 +6,8 @@ use App\Traits\ApiResponse;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\ActivityLog;
+use App\Models\User;
 class AuthenticationController extends Controller
 {
     use ApiResponse;
@@ -19,10 +21,21 @@ class AuthenticationController extends Controller
         ]);
         
         if (!Auth::attempt($request->only('email', 'password'))) {
+            ActivityLog::create([
+    'user_id' => null,
+    'activity' => 'Failed login attempt for: ' . $request->email,
+]);
+
             return $this->error('Invalid email or password.', 401);
         }
+        /** @var User $user */
         $user = Auth::user();
         
+        ActivityLog::create([
+    'user_id' => $user->id,
+    'activity' => 'Logged in',
+]);
+
         if ($request->filled('device_name')) {
             // Revoke any existing tokens for this device (prevent duplicates)
             $user->tokens()->where('name', $request->device_name)->delete();
@@ -77,6 +90,11 @@ class AuthenticationController extends Controller
         // ──────────────────────────────────────────
         // WEB SPA: invalidate the session (unchanged)
         // ──────────────────────────────────────────
+        ActivityLog::create([
+    'user_id' => $request->user()->id,
+    'activity' => 'Logged out',
+]);
+        
         Auth::guard('web')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();

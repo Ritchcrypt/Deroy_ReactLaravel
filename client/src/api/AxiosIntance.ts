@@ -43,9 +43,18 @@ AxiosInstance.interceptors.response.use(
     const isAuthCheck = url.includes("/user/auth/me");
     const isLoginAttempt = url.includes("auth/login");
 
-    if (status === 401 && !isAuthCheck && !isLoginAttempt) {
-      notify.error("Session expired. Please log in again.");
-    }
+    const hasSession =
+  localStorage.getItem("auth_user") ||
+  sessionStorage.getItem("auth_user");
+
+if (
+  status === 401 &&
+  hasSession &&
+  !isAuthCheck &&
+  !isLoginAttempt
+) {
+  notify.error("Session expired. Please log in again.");
+}
 
     if (status === 403) {
       notify.error("Access denied.");

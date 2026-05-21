@@ -3,6 +3,7 @@ import { createBrowserRouter, Navigate } from "react-router-dom";
 import { PATHS } from "./path";
 import { ProtectedRoute, GuestRoute, RoleRoute } from "./guards";
 import RootLayout from "./RootLayout";
+import ActivityLogs from "../pages/ActivityLogs";
 
 // Lazy Loading
 const Login = React.lazy(() => import("../pages/auth/Login"));
@@ -58,6 +59,10 @@ export const Routes = createBrowserRouter([
                   {
                     path: PATHS.APP.USER_DETAIL,
                     element: <ViewUserDetail />,
+                  },
+                  {
+                    path: "/app/activity-logs",
+                    element: <ActivityLogs />,
                   },
                 ],
               },

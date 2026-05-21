@@ -30,7 +30,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
   
   const menuGroups: MenuGroup[] = [
     {
-      group: "Main",
+      group: "",
       items: [
         {
           name: "Dashboard",
@@ -43,6 +43,12 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
           path: PATHS.APP.USERS,
           roles: ['admin'],
         },
+        {
+  name: "Activity Logs",
+  icon: "FaClipboardList",
+  path: "/app/activity-logs",
+  roles: ['admin'],
+},
       ],
     },
   ];
@@ -59,23 +65,23 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
 
   return (
     <aside
-      className={`fixed top-0 left-0 z-40 w-64 h-screen bg-bg-light pt-20 transition-transform border-r border-border-muted shadow
+       className={`fixed top-0 left-0 z-40 w-64 h-screen bg-bg-light pt-20 transition-transform border-r border-border-muted shadow overflow-y-auto
       ${isOpen ? "translate-x-0" : "-translate-x-full"} sm:translate-x-0 sm:shadow-none`}>
-      <div className="h-full px-4 pb-4 overflow-y-auto">
+      <div className="px-4 pb-4">
         {filteredGroups.map((group) => (
           <div key={group.group} className="mb-6">
             <h3 className="px-3 mb-2 text-sm font-black uppercase italic tracking-widest text-text-muted">
               {group.group}
             </h3>
 
-            <ul className="space-y-1.5 font-medium">
+            <ul className="space-y-3 font-medium">
               {group.items.map((item) => {
                 const isActive = location.pathname.startsWith(item.path);
                 return (
                   <li key={item.name}>
                     <Link
                       to={item.path}
-                      className={`flex items-center p-2.5 rounded-xl group relative ${
+                      className={`flex items-center p-3 rounded-xl group relative ${
                         isActive
                           ? "bg-primary text-bg-dark shadow scale-[1.02] z-10 hover:bg-primary/80"
                           : "text-text hover:text-bg-dark hover:bg-primary"
@@ -105,7 +111,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
 
                       {/* Text */}
                       <span
-                        className={`ml-3 text-sm ${
+                        className={`ml-3 text-base ${
                           isActive
                             ? "font-black italic uppercase tracking-tighter"
                             : "text-text group-hover:text-bg-dark"
