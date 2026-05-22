@@ -65,7 +65,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
 
   return (
     <aside
-       className={`fixed top-0 left-0 z-40 w-64 h-screen bg-bg-light pt-20 transition-transform border-r border-border-muted shadow overflow-y-auto
+       className={`fixed top-0 le0 z-40 w-64 h-screen bg-bg-light pt-20 transition-transform border-r border-border-muted shadow overflow-y-auto
       ${isOpen ? "translate-x-0" : "-translate-x-full"} sm:translate-x-0 sm:shadow-none`}>
       <div className="px-4 pb-4">
         {filteredGroups.map((group) => (

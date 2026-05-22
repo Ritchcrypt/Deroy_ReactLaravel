@@ -221,6 +221,11 @@ class UserController extends Controller
 
         $user->restore();
 
+        ActivityLog::create([
+    'user_id' => Auth::id(),
+    'activity' => 'Restored user: ' . $user->name,
+]);
+
         return $this->success(
             "User restored successfully",
             ['user' => new UserResource($user)],

@@ -5,7 +5,7 @@ import { InputField, PasswordInputField } from "../../components/ui/forms/index"
 import { useAuth } from "../../contexts/AuthContext";
 import { notify } from "../../util/notify";
 import { PATHS } from "../../routes/path";
-import BrandLogo from "../../assets/vite.svg";
+import { GiShieldBash } from "react-icons/gi";
 import type { AxiosError } from "axios";
 
 const Login: React.FC = () => {
@@ -84,29 +84,24 @@ const Login: React.FC = () => {
                         {/* Logo with glow */}
                         <div className="relative group">
                             <div className="absolute inset-0 bg-primary/30 rounded-3xl blur-2xl group-hover:bg-primary/40 transition-all duration-700 scale-110" />
-                            <div className="relative bg-bg-light/10 backdrop-blur-xl border border-border-muted/40 rounded-3xl p-8 shadow-lg
-                hover:scale-105 hover:border-primary/40 transition-all duration-500">
-                                <img
-                                    src={BrandLogo}
-                                    alt="DEROY Logo"
-                                    className="w-24 h-24 lg:w-32 lg:h-32 drop-shadow-lg"
-                                />
+                            <div className="relative bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 shadow-2xl hover:scale-105 hover:border-primary/40 transition-all duration-500">
+                                <GiShieldBash className="text-7xl lg:text-8xl text-primary drop-shadow-[0_0_40px_rgba(59,130,246,1)] animate-pulse" />
                             </div>
                         </div>
 
                         {/* Brand name */}
                         <div className="space-y-3">
                             <h1 className="text-4xl lg:text-5xl font-black uppercase tracking-tighter text-text">
-                                DEROY
+                                SMART COMMUNITY SAFETY INCIDENT SYSTEM
                             </h1>
                             <p className="text-sm lg:text-base font-semibold uppercase tracking-[0.3em] text-text-muted">
-                                React × Laravel
+                                
                             </p>
                         </div>
 
                         {/* Tagline */}
                         <p className="text-text-muted text-sm lg:text-base leading-relaxed max-w-xs">
-                            A modern full-stack development boilerplate built for speed, scalability, and elegance.
+                            "Fast response, safe communities"
                         </p>
 
                         {/* Decorative dots */}
@@ -232,7 +227,7 @@ const Login: React.FC = () => {
 
                         {/* Footer */}
                         <p className="text-center text-xs text-text-muted/60 mt-6 font-medium tracking-wide">
-                            © {new Date().getFullYear()} DEROY. All rights reserved.
+                            © {new Date().getFullYear()} All rights reserved.
                         </p>
                     </div>
                 </div>

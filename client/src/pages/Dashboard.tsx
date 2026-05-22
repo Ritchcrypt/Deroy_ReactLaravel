@@ -64,7 +64,7 @@ const Dashboard = () => {
         
         {/* Buttons & Notification */}
         <h1 className="text-text">
-          Will the code fix itself?
+          "Empowering Safer Communities Through Technology."
         </h1>
 
         {/* 🔔 Notification Trigger Example */}
@@ -124,7 +124,7 @@ const Dashboard = () => {
 
         <div className="space-y-12 pb-20">
           <h1 className="text-text">Forms</h1>
-          <div className="flex flex-col space-x-4 gap-3">
+          <div className="flex flex-col gap-4">
 
             <InputField
               label="Email" 
@@ -215,43 +215,9 @@ const Dashboard = () => {
 
         {/*  IMAGE COMPONENT USAGES */}
         <div className="space-y-4">
-          <h1 className="text-text">Image Component Example Usage</h1>
           
-          <Image 
-            src={HeroImage} 
-            alt="Hero Image"
-            size="md"
-          />
-
-          <Image 
-            src={HeroImage}
-            customSize="w-40 h-60" 
-          />
-
-          <Image 
-            src={HeroImage} 
-            customSize="w-[180px] h-[250px]" 
-          />
-
-          <Image 
-            src={HeroImage}
-            alt="Hero Image"
-            customSize="w-full"
-            aspectRatio="aspect-[16/9]"
-          />
-
-          <Image 
-            src="/images/user.jpg"
-            size="md"
-            className="rounded-full"
-          />
-
-          <Image 
-            src="/images/user.jpg"
-            size="md"
-            className="rounded-full"
-            fallbackIcon="FaUser"
-          />
+          
+          
 
         </div>
 

@@ -28,6 +28,7 @@ interface FormErrors {
 const CreateUserModal = ({ isOpen, onClose, onSuccess }: Props) => {
     const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState<FormErrors>({});
+    
 
     const initialFormState: UserFormData = {
         avatar: null,
@@ -40,6 +41,36 @@ const CreateUserModal = ({ isOpen, onClose, onSuccess }: Props) => {
     };
 
     const [form, setForm] = useState<UserFormData>(initialFormState);
+    const getPasswordStrength = (password: string) => {
+
+    let strength = 0;
+
+    if (password.length >= 8) strength++;
+    if (password.length >= 12) strength++;
+    if (/[A-Z]/.test(password)) strength++;
+    if (/[0-9]/.test(password)) strength++;
+    if (/[^A-Za-z0-9]/.test(password)) strength++;
+
+    if (strength <= 1) {
+        return {
+            label: "Weak",
+            color: "text-red-500",
+        };
+    }
+
+    if (strength <= 4) {
+        return {
+            label: "Medium",
+            color: "text-yellow-500",
+        };
+    }
+
+    return {
+        label: "Strong",
+        color: "text-green-500",
+    };
+};
+    const passwordStrength = getPasswordStrength(form.password);
 
     const handleFileSelect = (files: File[]) => {
         setForm((prev) => ({
@@ -196,7 +227,11 @@ const CreateUserModal = ({ isOpen, onClose, onSuccess }: Props) => {
                     onChange={(e) => handleChange("password", e.target.value)}
                     error={errors.password}
                 />
-
+                <div className="mt-1 ml-1">
+    <span className={`text-sm font-semibold ${passwordStrength.color}`}>
+        Password Strength: {passwordStrength.label}
+    </span>
+</div>
                 <PasswordInputField
                     name="password_confirmation"
                     label="Confirm Password"

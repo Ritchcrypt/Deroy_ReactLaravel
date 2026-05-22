@@ -6,7 +6,7 @@ import { useAuth } from "../../contexts/AuthContext";
 import { useTheme } from "../../contexts/ThemeContext";
 import { useOnClickOutside } from "../../hooks/useOnClickOutside";
 import { notify } from "../../util/notify";
-import Logo from "../../assets/react.svg";
+import { GiShieldBash } from "react-icons/gi";
 
 interface NavbarProps {
   onMenuClick: () => void;
@@ -55,8 +55,8 @@ const Navbar: React.FC<NavbarProps> = ({ onMenuClick }) => {
               <Icon iconName="FaAlignJustify" />
             </span>
             <Link to={PATHS.APP.DASHBOARD} className="flex gap-3 items-center">
-              <img src={Logo} alt="App Logo" />
-              <span className="text-text font-black text-lg tracking-tighter uppercase italic hidden sm:block">DEROY SQUAD</span>
+              <GiShieldBash className="text-4xl text-blue-500" />
+              <span className="text-text font-black text-lg tracking-tighter uppercase italic hidden sm:block">SMART COMMUNITY SAFETY INCIDENT SYSTEM</span>
             </Link>
           </div>
 
