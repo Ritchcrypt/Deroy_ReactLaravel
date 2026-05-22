@@ -42,6 +42,7 @@ export default function ActivityLogs() {
       <table className="w-full border">
         <thead>
           <tr>
+            <th className="border p-2">ID</th>
             <th className="border p-2">User ID</th>
             <th className="border p-2">Activity</th>
             <th className="border p-2">Timestamp</th>
@@ -51,6 +52,7 @@ export default function ActivityLogs() {
         <tbody>
           {logs.map((log) => (
             <tr key={log.id}>
+              <td className="border p-2">{log.id}</td>
               <td className="border p-2">{log.user?.name}</td>
               <td className="border p-2">{log.activity}</td>
               <td className="border p-2">

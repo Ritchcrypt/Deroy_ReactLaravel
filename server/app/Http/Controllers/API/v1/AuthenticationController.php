@@ -19,7 +19,6 @@ class AuthenticationController extends Controller
             'password'    => ['required', 'string'],
             'device_name' => ['sometimes', 'string'], // Mobile only
         ]);
-        
         if (!Auth::attempt($request->only('email', 'password'))) {
             ActivityLog::create([
     'user_id' => null,
